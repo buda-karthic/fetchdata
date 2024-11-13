@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+  </head>
+
+  <body>
+    <h1 class="heading">Javascript fetch</h1>
+    <div id="cards">
+      <div class="card">
+        <h1 class="title">title</h1>
+        <img
+          src="https://render.fineartamerica.com/images/rendered/medium/canvas-print/15.5/20/mirror/break/images/artworkimages/medium/2/floral-lion-iii-balazs-solti-canvas-print.jpg"
+          alt="img"
+        />
+        <p>description</p>
+        <p class="category">category</p>
+        <p class="price">price</p>
+      </div>
+      <div class="card">
+        <h1 class="title">title</h1>
+        <img
+          src="https://render.fineartamerica.com/images/rendered/medium/canvas-print/15.5/20/mirror/break/images/artworkimages/medium/2/floral-lion-iii-balazs-solti-canvas-print.jpg"
+          alt="img"
+        />
+        <p>description</p>
+        <p class="category">category</p>
+        <p class="price">price</p>
+      </div>
+      <div class="card">
+        <h1 class="title">title</h1>
+        <img
+          src="https://render.fineartamerica.com/images/rendered/medium/canvas-print/15.5/20/mirror/break/images/artworkimages/medium/2/floral-lion-iii-balazs-solti-canvas-print.jpg"
+          alt="img"
+        />
+        <p>description</p>
+        <p class="category">category</p>
+        <p class="price">price</p>
+      </div>
+      <div class="card">
+        <h1 class="title">title</h1>
+        <img
+          src="https://render.fineartamerica.com/images/rendered/medium/canvas-print/15.5/20/mirror/break/images/artworkimages/medium/2/floral-lion-iii-balazs-solti-canvas-print.jpg"
+          alt="img"
+        />
+        <p>description</p>
+        <p class="category">category</p>
+        <p class="price">price</p>
+      </div>
+      <div class="card">
+        <h1 class="title">title</h1>
+        <img
+          src="https://render.fineartamerica.com/images/rendered/medium/canvas-print/15.5/20/mirror/break/images/artworkimages/medium/2/floral-lion-iii-balazs-solti-canvas-print.jpg"
+          alt="img"
+        />
+        <p>description</p>
+        <p class="category">category</p>
+        <p class="price">price</p>
+      </div>
+    </div>
+    <div id="root"></div>
+  </body>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .heading {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    #cards {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .card {
+      width: 20%;
+      box-shadow: 0 0 4px 3px pink;
+      text-align: center;
+      padding: 1.5em;
+      margin-bottom: 2em;
+    }
+    .title {
+      font-size: 1.3rem;
+    }
+    .category,
+    .price {
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 1rem;
+    }
+    .card img {
+      object-fit: contain;
+      max-width: 100%;
+    }
+  </style>
+
+  <script>
+    //https://www.youtube.com/watch?v=m_vL25vzpiE
+
+    // fetch returns promise
+
+    // promise will either be fullfilled (then) or rejected (catch)
+
+    // convert  promise => json => object
+
+    // if we get some error we need to handle that by using catch
+
+    fetch("https://fakestoreapi.com/products")
+      .then((data) => {
+        console.log(data);
+        return data.json();
+      })
+      .then((compleData) => {
+        console.log(compleData);
+        let mydata = "";
+        compleData.map((value) => {
+          mydata += `
+             <div class="card">
+        <h1 class="title">${value.title}</h1>
+        <img
+          src="https://render.fineartamerica.com/images/rendered/medium/canvas-print/15.5/20/mirror/break/images/artworkimages/medium/2/floral-lion-iii-balazs-solti-canvas-print.jpg"
+          alt="img"
+        />
+        <p>${value.description}</p>
+        <p class="category">${value.category}</p>
+        <p class="price">${value.price}</p>
+      </div>
+          `;
+        });
+        document.getElementById("cards").innerHTML = mydata;
+      });
+  </script>
+</html>
